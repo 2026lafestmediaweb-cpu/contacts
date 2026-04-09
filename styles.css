@@ -18,7 +18,7 @@ body {
   padding: 40px 20px;
   position: relative;
   overflow-x: hidden;
-  /* background: url('nataraja2.jpeg') no-repeat center center/cover; */
+  background: url('nataraja2.jpeg') no-repeat center center/cover;
 }
 
 .account-card {
