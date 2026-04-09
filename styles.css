@@ -884,7 +884,7 @@ h1 {
 }
 
 
-@media screen and (max-height:1200px){
+@media screen and (max-height:1000px){
   footer{
     position:relative !important;
     margin-top:40px;
