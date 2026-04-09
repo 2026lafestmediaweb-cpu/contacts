@@ -62,7 +62,7 @@ body {
 }
 
 /* Label style (we fake labels using nth-child) */
-.account-card .number-wrapper:nth-child(3 )::before {
+.account-card .number-wrapper:nth-child(3)::before {
   content: "ACC NO";
 }
 
@@ -573,7 +573,7 @@ h1 {
 
 /* FOOTER */
 .footer {
-  /* position: fixed; */
+  position: fixed;
   bottom: 20px;
   left: 20px;
   right: 20px;
@@ -808,7 +808,11 @@ h1 {
 
   .footer {
     margin-top: 40px;
-    padding: 20px Asc 15px;
+    padding: 20px 15px;
+    position: relative;
+    left: 0;
+    right: 0;
+    bottom: 0;
   }
 
   .footer p {
