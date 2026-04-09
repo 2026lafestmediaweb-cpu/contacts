@@ -1,0 +1,353 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Contacts</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <!-- Glitch Effect Overlay -->
+    <div class="glitch-overlay"></div>
+
+    <!-- Background Glow Effect -->
+    <div class="background-glow"></div>
+
+    <div class="container">
+      <div class="grid">
+        <!-- Repeat this card -->
+        <div class="card">
+          <p class="post">LOGISTICS COORDINATOR</p>
+          <h2 class="name">JOEL KM</h2>
+          <div class="number-wrapper">
+            <p class="number">+91 98477 25009</p>
+            <button class="copy-btn" title="Copy phone number">copy</button>
+          </div>
+        </div>
+
+        <div class="card">
+          <p class="post">TREASURER</p>
+          <h2 class="name">ADITYA NARAYANAN</h2>
+          <div class="number-wrapper">
+            <p class="number">+91 89218 92751</p>
+            <button class="copy-btn" title="Copy phone number">copy</button>
+          </div>
+        </div>
+
+        <div class="card account-card">
+          <p class="post">PAYMENT DETAILS</p>
+          <h2 class="name">ACCOUNT NAME: LAFEST</h2>
+
+          <div class="number-wrapper">
+            <p class="number">0497053000011315</p>
+            <button class="copy-btn">copy</button>
+          </div>
+
+          <div class="number-wrapper">
+            <p class="number">South Indian Bank</p>
+            <button class="copy-btn">copy</button>
+          </div>
+
+          <div class="number-wrapper">
+            <p class="number">SIBL0000497</p>
+            <button class="copy-btn">copy</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <p>© ALL RIGHTS RESERVED MEDIA TEAM '27</p>
+    </footer>
+
+    <script>
+      function openCreditsModal() {
+        document.getElementById("creditsModal").style.display = "flex";
+      }
+
+      function closeCreditsModal() {
+        document.getElementById("creditsModal").style.display = "none";
+      }
+
+      window.onclick = function (event) {
+        const modal = document.getElementById("creditsModal");
+        if (event.target == modal) {
+          modal.style.display = "none";
+        }
+      };
+
+      // Background Glow Effect
+      const glow = document.querySelector(".background-glow");
+      const cards = document.querySelectorAll(".card");
+
+      document.addEventListener("mousemove", (e) => {
+        const cursorX = e.clientX;
+        const cursorY = e.clientY;
+
+        // Update background glow
+        glow.style.left = cursorX + "px";
+        glow.style.top = cursorY + "px";
+
+        // Update card border glow
+        cards.forEach((card) => {
+          const rect = card.getBoundingClientRect();
+          const cardCenterX = rect.left + rect.width / 2;
+          const cardCenterY = rect.top + rect.height / 2;
+
+          const distanceX = cursorX - cardCenterX;
+          const distanceY = cursorY - cardCenterY;
+          const distance = Math.sqrt(
+            distanceX * distanceX + distanceY * distanceY,
+          );
+
+          const maxDistance = 350;
+          const intensity = Math.max(0, 1 - distance / maxDistance);
+
+          if (intensity > 0.1) {
+            // Normalize direction
+            const length = Math.sqrt(
+              distanceX * distanceX + distanceY * distanceY,
+            );
+            const dirX = (distanceX / length) * intensity;
+            const dirY = (distanceY / length) * intensity;
+
+            card.style.setProperty("--glow-x", `${dirX * 15}px`);
+            card.style.setProperty("--glow-y", `${dirY * 15}px`);
+            card.style.setProperty("--glow-intensity", intensity * 0.4);
+            card.classList.add("card-glow-active");
+          } else {
+            card.classList.remove("card-glow-active");
+          }
+        });
+      });
+
+      // Random Glitch Effect
+      const glitchOverlay = document.querySelector(".glitch-overlay");
+      let glitchesEnabled = localStorage.getItem("glitchesEnabled") !== "false";
+      let staticNoiseEnabled =
+        localStorage.getItem("staticNoiseEnabled") !== "false";
+
+      // Settings Panel Control
+      const settingsBtn =
+        document.querySelector(".settings-btn") ||
+        document.getElementById("settings-btn-main");
+      const settingsPanel = document.querySelector(".settings-panel");
+      const staticNoiseToggle = document.getElementById("static-noise-toggle");
+      const glitchToggle = document.getElementById("glitch-toggle");
+
+      // Debug: Check if elements exist
+      console.log("Settings Button:", settingsBtn);
+      console.log("Settings Panel:", settingsPanel);
+      console.log("Static Noise Toggle:", staticNoiseToggle);
+      console.log("Glitch Toggle:", glitchToggle);
+
+      // Load saved settings
+      if (staticNoiseToggle) staticNoiseToggle.checked = staticNoiseEnabled;
+      if (glitchToggle) glitchToggle.checked = glitchesEnabled;
+
+      // Settings button click handler
+      function openCloseSettings(e) {
+        e.stopPropagation();
+        console.log("Settings button clicked!");
+        if (settingsPanel) {
+          settingsPanel.classList.toggle("active");
+        }
+      }
+
+      if (settingsBtn) {
+        settingsBtn.addEventListener("click", openCloseSettings);
+      }
+
+      // Close settings panel when clicking outside
+      document.addEventListener("click", (e) => {
+        if (
+          settingsPanel &&
+          !settingsPanel.contains(e.target) &&
+          (!settingsBtn || !settingsBtn.contains(e.target))
+        ) {
+          settingsPanel.classList.remove("active");
+        }
+      });
+
+      // Prevent propagation inside the settings panel
+      if (settingsPanel) {
+        settingsPanel.addEventListener("click", (e) => {
+          e.stopPropagation();
+        });
+      }
+
+      // Static Noise Toggle
+      staticNoiseToggle.addEventListener("change", () => {
+        staticNoiseEnabled = staticNoiseToggle.checked;
+        localStorage.setItem(
+          "staticNoiseEnabled",
+          staticNoiseEnabled ? "true" : "false",
+        );
+
+        if (staticNoiseEnabled) {
+          glitchOverlay.style.animation =
+            "static-noise 0.15s steps(8, end) infinite";
+        } else {
+          glitchOverlay.style.animation = "none";
+        }
+      });
+
+      // Glitch Toggle
+      let glitchSchedulerId = null;
+
+      glitchToggle.addEventListener("change", () => {
+        glitchesEnabled = glitchToggle.checked;
+        localStorage.setItem(
+          "glitchesEnabled",
+          glitchesEnabled ? "true" : "false",
+        );
+
+        if (glitchesEnabled) {
+          // Clear any existing scheduler
+          if (glitchSchedulerId) {
+            clearTimeout(glitchSchedulerId);
+          }
+          glitchOverlay.classList.remove(
+            "active",
+            "screen-glitch",
+            "mini-glitch",
+          );
+          scheduleRandomGlitch(); // Restart glitch scheduling
+        } else {
+          if (glitchSchedulerId) {
+            clearTimeout(glitchSchedulerId);
+            glitchSchedulerId = null;
+          }
+          glitchOverlay.classList.remove(
+            "active",
+            "screen-glitch",
+            "mini-glitch",
+          );
+        }
+      });
+
+      // Initialize static noise based on setting
+      if (!staticNoiseEnabled) {
+        glitchOverlay.style.animation = "none";
+      }
+
+      function triggerGlitch() {
+        if (!glitchesEnabled) return; // Don't trigger if glitches are disabled
+
+        const glitchTypes = [
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "mini-glitch",
+          "screen-glitch",
+        ];
+        const randomGlitch =
+          glitchTypes[Math.floor(Math.random() * glitchTypes.length)];
+        const randomTopPosition = Math.random() * 85 + 5; // 5-90% for vertical position
+
+        // Generate really small random width (1-10%) and position
+        const randomWidth = Math.random() * 9 + 1; // 1-10% width
+        const randomStartPos = Math.random() * (100 - randomWidth); // Start position so it fits within screen
+
+        const randomLeftPosition = randomStartPos;
+        const randomRightPosition = 100 - randomStartPos - randomWidth;
+
+        // Generate random height - mostly very thin (0.5-1.5%), rarely slightly taller (2-4%)
+        const isSquare = Math.random() > 0.9; // 10% chance of slightly taller glitch
+        const randomHeight = isSquare
+          ? Math.random() * 2 + 2
+          : Math.random() * 1 + 0.5; // 2-4% or 0.5-1.5%
+
+        glitchOverlay.classList.remove(
+          "active",
+          "screen-glitch",
+          "mini-glitch",
+        );
+        glitchOverlay.style.setProperty(
+          "--glitch-top",
+          randomTopPosition + "%",
+        );
+        glitchOverlay.style.setProperty(
+          "--glitch-left",
+          randomLeftPosition + "%",
+        );
+        glitchOverlay.style.setProperty(
+          "--glitch-right",
+          randomRightPosition + "%",
+        );
+        glitchOverlay.style.setProperty("--glitch-height", randomHeight + "%");
+
+        // Trigger reflow to restart animation
+        void glitchOverlay.offsetWidth;
+
+        glitchOverlay.classList.add(randomGlitch);
+
+        const duration = randomGlitch === "mini-glitch" ? 150 : 200;
+        setTimeout(() => {
+          glitchOverlay.classList.remove(
+            "active",
+            "screen-glitch",
+            "mini-glitch",
+          );
+        }, duration);
+      }
+
+      // Random glitch at intervals - refined for aesthetic appeal and user comfort
+      function scheduleRandomGlitch() {
+        if (!glitchesEnabled) return; // Don't schedule if glitches are disabled
+
+        const randomDelay = Math.random() * 1200 + 600; // 0.6-1.8 seconds between glitches
+        glitchSchedulerId = setTimeout(() => {
+          if (!glitchesEnabled) return; // Double-check glitches are still enabled
+
+          triggerGlitch();
+
+          // 35% chance of triggering additional mini-glitches within short time
+          if (Math.random() > 0.65) {
+            const secondGlitchDelay = Math.random() * 250 + 150;
+            setTimeout(() => {
+              if (!glitchesEnabled) return;
+              triggerGlitch();
+            }, secondGlitchDelay);
+
+            // 30% chance of a third glitch
+            if (Math.random() > 0.7) {
+              const thirdGlitchDelay =
+                secondGlitchDelay + Math.random() * 250 + 150;
+              setTimeout(() => {
+                if (!glitchesEnabled) return;
+                triggerGlitch();
+              }, thirdGlitchDelay);
+            }
+          }
+
+          scheduleRandomGlitch(); // Schedule next glitch
+        }, randomDelay);
+      }
+
+      // Initialize glitch scheduling
+      if (glitchesEnabled) {
+        scheduleRandomGlitch();
+      }
+
+      // COPY BUTTON FUNCTIONALITY
+    </script>
+
+    <script src="script.js"></script>
+  </body>
+</html>
