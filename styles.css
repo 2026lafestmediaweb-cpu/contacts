@@ -30,7 +30,7 @@ body {
 }
 
 /* subtle cyber scan line */
-.account-::before {
+.account-card::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -54,7 +54,7 @@ body {
 }
 
 /* Title style */
-.account- .name {
+.account-card .name {
   font-size: 1rem;
   color: #00e5ff;
   text-transform: uppercase;
@@ -64,26 +64,26 @@ body {
 }
 
 /* Make each row look structured */
-.account- .number-wrapper {
+.account-card .number-wrapper {
   justify-content: space-between;
   border-bottom: 1px dashed rgba(0, 170, 255, 0.2);
   padding-bottom: 8px;
 }
 
 /* Label style (we fake labels using nth-child) */
-.account- .number-wrapper:nth-child(3)::before {
+.account-card .number-wrapper:nth-child(3)::before {
   content: "ACC NO";
 }
 
-.account- .number-wrapper:nth-child(4)::before {
+.account-card .number-wrapper:nth-child(4)::before {
   content: "BANK";
 }
 
-.account- .number-wrapper:nth-child(5)::before {
+.account-card .number-wrapper:nth-child(5)::before {
   content: "IFSC";
 }
 
-.account- .number-wrapper::before {
+.account-card .number-wrapper::before {
   color: #00aaff;
   font-size: 0.7rem;
   letter-spacing: 1px;
