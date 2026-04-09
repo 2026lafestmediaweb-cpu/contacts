@@ -882,3 +882,11 @@ h1 {
     font-size: 0.85rem;
   }
 }
+
+
+@media screen and (max-height:1000px){
+  footer{
+    position:relative !important;
+    margin-top:40px;
+  }
+}
