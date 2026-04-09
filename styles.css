@@ -520,14 +520,13 @@ h1 {
 .number {
   font-size: 0.85rem;
   color: #aaa;
-  margin-bottom: 20px;
 }
 
 /* NUMBER WITH COPY BUTTON */
 .number-wrapper {
   display: flex;
   align-items: center;
-  /* justify-content: center; */
+  justify-content: flex-start;
   gap: 10px;
   margin-bottom: 20px;
 }
