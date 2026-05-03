@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Contacts</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -14,52 +15,54 @@
     <div class="background-glow"></div>
 
     <div class="container">
-      <div class="grid">
-        <!-- Repeat this card -->
-        <div class="card">
-          <p class="post">LOGISTICS COORDINATOR</p>
-          <h2 class="name">JOEL KM</h2>
-          <div class="number-wrapper">
-            <p class="number">+91 98477 25009</p>
-            <button class="copy-btn" title="Copy phone number">copy</button>
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3 md:items-stretch">
+        <div class="flex flex-col gap-4 md:gap-5 md:origin-top md:scale-90 lg:scale-95">
+          <div class="card">
+            <p class="post">LOGISTICS COORDINATOR</p>
+            <h2 class="name">JOEL KM</h2>
+            <div class="number-wrapper">
+              <p class="number">+91 98477 25009</p>
+              <button class="copy-btn" title="Copy phone number">copy</button>
+            </div>
+          </div>
+
+          <div class="card">
+            <p class="post">TREASURER</p>
+            <h2 class="name">ADITYA NARAYAN S</h2>
+            <div class="number-wrapper">
+              <p class="number">+91 89218 92751</p>
+              <button class="copy-btn" title="Copy phone number">copy</button>
+            </div>
           </div>
         </div>
 
-        <div class="card">
-          <p class="post">TREASURER</p>
-          <h2 class="name">ADITYA NARAYAN S</h2>
-          <div class="number-wrapper">
-            <p class="number">+91 89218 92751</p>
-            <button class="copy-btn" title="Copy phone number">copy</button>
+        <div class="h-full">
+          <div class="card account-card h-full">
+            <p class="post">PAYMENT DETAILS</p>
+            <h2 class="name">ACCOUNT NAME: LAFEST</h2>
+
+            <div class="number-wrapper">
+              <p class="number">0497053000011315</p>
+              <button class="copy-btn">copy</button>
+            </div>
+
+            <div class="number-wrapper">
+              <p class="number">South Indian Bank</p>
+              <button class="copy-btn">copy</button>
+            </div>
+
+            <div class="number-wrapper">
+              <p class="number">SIBL0000497</p>
+              <button class="copy-btn">copy</button>
+            </div>
           </div>
         </div>
 
-        <div class="card account-card">
-          <p class="post">PAYMENT DETAILS</p>
-          <h2 class="name">ACCOUNT NAME: LAFEST</h2>
-
-          <div class="number-wrapper">
-            <p class="number">0497053000011315</p>
-            <button class="copy-btn">copy</button>
+        <div class="qr-section mt-0 md:self-start">
+          <p class="qr-text">SCAN AND PAY USING ANY UPI APP</p>
+          <div class="qr-card">
+            <img src="qrcode.jpeg" alt="UPI QR Code" class="qr-image" />
           </div>
-
-          <div class="number-wrapper">
-            <p class="number">South Indian Bank</p>
-            <button class="copy-btn">copy</button>
-          </div>
-
-          <div class="number-wrapper">
-            <p class="number">SIBL0000497</p>
-            <button class="copy-btn">copy</button>
-          </div>
-        </div>
-      </div>
-
-      <div class="qr-section">
-        <p class="qr-text">SCAN AND PAY USING ANY UPI APP</p>
-
-        <div class="qr-card">
-          <img src="qrcode.jpeg" alt="UPI QR Code" class="qr-image" />
         </div>
       </div>
     </div>
